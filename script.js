@@ -3,6 +3,7 @@ const category1 = "Action";
 const category2 = "Comedy";
 const category3 = "Drama";
 const bestMovieSection = document.querySelector(".bestmovie");
+const bestMovieDetailsSection = document.querySelector(".bestmovie-details");
 
 
 // Test
@@ -35,23 +36,44 @@ async function fetchBestMovies() {
 
 async function renderBestMovie() {
     let bestMovies = await fetchBestMovies();
-    console.log(bestMovies["results"][0])
-    return bestMovies["results"][0]
+    console.log(bestMovies["results"][0]["id"])
+    return bestMovies["results"][0]["id"]
 }
 
-function displayBestMovie(){
-    renderBestMovie().then(bestMovie => {
-        let bestMovieImg = document.createElement("img");
-        let bestMovieTitle = document.createElement("h1");
-        bestMovieImg.src = bestMovie.image_url;
-        bestMovieTitle.innerText = bestMovie.title;
-        bestMovieSection.appendChild(bestMovieImg);
-        bestMovieSection.appendChild(bestMovieTitle);
+function displayBestMovie(id){
+    let bestMovieImg = document.createElement("img");
+    let bestMovieTitle = document.createElement("li");
+    let bestMovieDescription = document.createElement("li");
+    let bestMovieGenres = document.createElement("li");
+    let bestMovieDatePublished = document.createElement("li");
+    let bestMovieVotes = document.createElement("li");
+    let bestMovieImdbScore = document.createElement("li");
+    let bestMovieDirectors = document.createElement("li");
+    let bestMovieActors = document.createElement("li");
+    let bestMovieDuration = document.createElement("li");
     
-    let bestMovieDescription = document.createElement("h2");
-    let bestMovieId = "1508669"
-    renderMovieDescription(bestMovieId).then(description => bestMovieDescription.textContent = description);
-    bestMovieSection.appendChild(bestMovieDescription);
+    renderMovieDetails(id).then(movie => {   
+        bestMovieImg.src = movie["image_url"];
+        bestMovieTitle.innerText = movie["title"];
+        bestMovieDescription.textContent = movie["description"];
+        bestMovieGenres.textContent = movie["genres"];
+        bestMovieDatePublished.textContent = movie["date_published"];
+        bestMovieVotes.textContent = movie["votes"];
+        bestMovieImdbScore.textContent = movie["imdb_score"];
+        bestMovieDirectors.textContent = movie["directors"];
+        bestMovieActors.textContent = movie["actors"];
+        bestMovieDuration.textContent = movie["duration"];
+        
+        document.querySelector(".bestmovie-img").appendChild(bestMovieImg);
+        bestMovieDetailsSection.appendChild(bestMovieTitle);
+        bestMovieDetailsSection.appendChild(bestMovieDescription);
+        bestMovieDetailsSection.appendChild(bestMovieGenres);
+        bestMovieDetailsSection.appendChild(bestMovieDatePublished);
+        bestMovieDetailsSection.appendChild(bestMovieVotes);
+        bestMovieDetailsSection.appendChild(bestMovieImdbScore);
+        bestMovieDetailsSection.appendChild(bestMovieDirectors);
+        bestMovieDetailsSection.appendChild(bestMovieActors);
+        bestMovieDetailsSection.appendChild(bestMovieDuration);
     })
 }
 
@@ -115,27 +137,31 @@ function displayBestMoviesCategory(category) {
 
 // Data from one specific movie
 
-async function fetchMovie(id) {
+async function fetchMovieDetails(id) {
     try {
         const response = await fetch(`http://localhost:8000/api/v1/titles/${id}`, {
             method: 'GET',
             credentials: 'same-origin'
         });
         const movie = await response.json();
+        // console.log(movie)
         return movie;
     } catch (error) {
         console.error(error);
     }
 }
 
-async function renderMovieDescription(id)  {
-    const movie = await fetchMovie(id);
-    //console.log(movie["description"]);
-    return movie["description"];   
+async function renderMovieDetails(id)  {
+    const movie = await fetchMovieDetails(id);
+    console.log(movie);
+    return movie;   
 }
 
 
-displayBestMovie()
+renderBestMovie().then (result => displayBestMovie(result))
+
+
+
 displayBestMoviesCategory(category3)
 displayBestMoviesCategory(category2)
 displayBestMoviesCategory(category1)
