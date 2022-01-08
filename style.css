@@ -90,3 +90,11 @@ ul li {
     color: black;
 }
 
+#modal {
+    /* display: flex;
+    justify-content: center; */
+    background-color: burlywood;
+    /* margin: 0;
+    border: 0; */
+
+}   

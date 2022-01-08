@@ -36,7 +36,7 @@ async function fetchBestMovies() {
 
 async function renderBestMovie() {
     let bestMovies = await fetchBestMovies();
-    console.log(bestMovies["results"][0]["id"])
+    // console.log(bestMovies["results"][0]["id"])
     return bestMovies["results"][0]["id"]
 }
 
@@ -119,12 +119,17 @@ function displayBestMoviesCategory(category) {
         document.body.appendChild(categorySection);
         for (i = 0; i < bestMoviesCategory.length - 1; i++) {
             let newCard = document.createElement("div");
-            newCard.className = "book";
+            newCard.className = bestMoviesCategory[i].id;
             categorySection.appendChild(newCard)
             let newImg = document.createElement("img");
-            let newTitle = document.createElement("h3");
+            let newTitle = document.createElement("a");
             newImg.src = bestMoviesCategory[i].image_url; 
             newTitle.innerText = bestMoviesCategory[i].title;
+            newTitle.href = "#";
+            newTitle.addEventListener("click", function() {
+                console.log(newCard.className);
+                displayModal(newCard.className);
+            });
             newCard.appendChild(newImg);
             newCard.appendChild(newTitle);
         }
@@ -132,7 +137,28 @@ function displayBestMoviesCategory(category) {
 }
 
 
+function displayModal(id) {
 
+    // let movieModal = document.getElementById("movieModal");
+    let closeModal = document.getElementById("closeModal");
+    let dialog = document.getElementById("modal");
+
+    let movieImg = document.createElement("img");
+    renderMovieDetails(id).then(movie => {   
+        movieImg.src = movie["image_url"];
+    });
+    document.querySelector("#modal").appendChild(movieImg);
+
+    dialog.showModal();
+
+    // movieModal.addEventListener("click", function() {
+    //     dialog.showModal();
+    // });
+    closeModal.addEventListener('click', function() {
+        movieImg.remove();
+        dialog.close();
+    });
+}
 
 
 // Data from one specific movie
@@ -153,16 +179,17 @@ async function fetchMovieDetails(id) {
 
 async function renderMovieDetails(id)  {
     const movie = await fetchMovieDetails(id);
-    console.log(movie);
+    // console.log(movie);
     return movie;   
 }
 
 
+
+
+// displayModal(8571428);
+
 renderBestMovie().then (result => displayBestMovie(result))
-
-
 
 displayBestMoviesCategory(category3)
 displayBestMoviesCategory(category2)
 displayBestMoviesCategory(category1)
-
