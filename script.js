@@ -1,7 +1,6 @@
-
 const category1 = "Action";
 const category2 = "Comedy";
-const category3 = "Drama";
+const category3 = "History";
 const bestMovieSection = document.querySelector(".bestmovie");
 const bestMovieDetailsSection = document.querySelector(".bestmovie-details");
 
@@ -20,11 +19,11 @@ async function fetchBestMoviesId() {
 // Return data from a specific movie (Id)
 async function fetchMovieDetails(id) {
     try {
-        const response = await fetch(`http://localhost:8000/api/v1/titles/${id}`, {
+        let response = await fetch(`http://localhost:8000/api/v1/titles/${id}`, {
             method: 'GET',
             credentials: 'same-origin'
         });
-        const movie = await response.json();
+        let movie = await response.json();
         return movie;
     } catch (error) {
         console.error(error);
@@ -33,8 +32,8 @@ async function fetchMovieDetails(id) {
 
 // Return movies from a category (sorted by score)
 async function fetchBestMoviesByCategory(category) {
-    const response = await fetch(`http://localhost:8000/api/v1/titles/?&page_size=8&sort_by=-imdb_score&genre=${category}`);
-    const data = await response.json();
+    let response = await fetch(`http://localhost:8000/api/v1/titles/?&page_size=8&sort_by=-imdb_score&genre=${category}`);
+    let data = await response.json();
     return await data["results"];
 }
 
@@ -54,7 +53,8 @@ function displayBestMovie(id){
     
     fetchMovieDetails(id).then(movie => {   
         bestMovieImg.src = movie["image_url"];
-        bestMovieTitle.innerText = movie["title"];
+        bestMovieTitle.innerText = `TITRE: ${movie["title"]}`;
+        bestMovieTitle.innerText += "TEST";
         bestMovieDescription.textContent = movie["description"];
         bestMovieGenres.textContent = movie["genres"];
         bestMovieDatePublished.textContent = movie["date_published"];
@@ -77,30 +77,27 @@ function displayBestMovie(id){
     })
 }
 
-// Display movies from 3 categories
-function displayBestMoviesCategory(category) {
+// Display best movies of a category
+function displayBestMoviesCategory(category, section) {
+     
+
     fetchBestMoviesByCategory(category).then(results => {
-        let bestMoviesCategory = results;
-        let categoryTitle = document.createElement("div");
-        categoryTitle.className = "category_title";
-        document.body.appendChild(categoryTitle);
-        let title = document.createElement("h1");
-        title.innerText = category;
-        categoryTitle.appendChild(title);
-        let categorySection = document.createElement("div");
-        categorySection.className = "category";
-        document.body.appendChild(categorySection);
+        let bestMoviesCategory = results;        
+        if (section != "bestmovies"){
+            document.querySelector(`#${section}_title`).innerText = category;
+        }
         for (i = 0; i < bestMoviesCategory.length - 1; i++) {
             let newCard = document.createElement("div");
             newCard.className = "movieCard";
             newCard.id = bestMoviesCategory[i].id;
-            categorySection.appendChild(newCard)
+            document.querySelector(`#${section}`).appendChild(newCard)
             let newImg = document.createElement("img");
             let newTitle = document.createElement("a");
             newImg.src = bestMoviesCategory[i].image_url; 
             newTitle.innerText = bestMoviesCategory[i].title;
             newTitle.href = "#";
-            newTitle.addEventListener("click", function() {
+            newTitle.addEventListener("click", function(e) {
+                e.preventDefault();
                 displayModal(newCard.id);
             });
             newCard.appendChild(newImg);
@@ -109,26 +106,46 @@ function displayBestMoviesCategory(category) {
     })
 }
 
-// Modal window
 function displayModal(id) {
 
-    let closeModal = document.getElementById("closeModal");
-    let dialog = document.getElementById("modal");
+    let modal = document.getElementById("modal");
+    let imgModal = document.querySelector(".modal-img");
+    let detailsModal = document.querySelector(".modal-details");
     let movieImg = document.createElement("img");
+    let movieTitle = document.createElement("li");
     fetchMovieDetails(id).then(movie => {   
         movieImg.src = movie["image_url"];
+        movieTitle.innerText = movie["title"];
     });
-    document.querySelector("#modal").appendChild(movieImg);
-    dialog.showModal();
-    closeModal.addEventListener('click', function() {
-        movieImg.remove();
-        dialog.close();
+    imgModal.appendChild(movieImg);
+    detailsModal.appendChild(movieTitle);
+    modal.style.display = "flex";
+    modal.style.position = "fixed";
+    modal.style.verticalAlign = "middle";
+    modal.addEventListener('click', function() {
+        imgModal.innerHTML = "";
+        detailsModal.innerHTML = "";
+        modal.style.display = "none";
     });
 }
+
+
 
 // Main
 
 fetchBestMoviesId().then (id => displayBestMovie(id));
-displayBestMoviesCategory(category3)
-displayBestMoviesCategory(category2)
-displayBestMoviesCategory(category1)
+displayBestMoviesCategory("", "bestmovies");
+
+
+document.getElementById("left").onclick = function() {
+    document.getElementById("container").scrollLeft += 200;
+}
+
+document.getElementById("right").onclick = function() {
+    document.getElementById("container").scrollLeft -= 200;
+}
+
+
+// displayBestMoviesCategory(category1, "category1");
+// displayBestMoviesCategory(category2, "category2");
+// displayBestMoviesCategory(category3, "category3");
