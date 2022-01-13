@@ -6,13 +6,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Merienda+One&family=Nunito+Sans&display=swap" rel="stylesheet">
     <title>JustStreamIt</title>
 </head>
 <body> 
     <nav>
         <ul class="list-nav">
             <li class="item-nav">
-                <a href="#" id="test">JustStreamIt</a>
+                <a href="#">JustStreamIt</a>
             </li>
             <li class="item-nav">
                 <a href="#">Accueil</a>
@@ -23,51 +24,42 @@
         </ul>
     </nav>
 
-    <div id="modal">
-        <div id="modal-test">
+    <div id="container-modal">
+        <div id="modal">
             <div class="modal-img"></div>
             <ul class="modal-details"></ul>
         </div>
     </div>
-   
-    <div class="bestmovie">
-        <div class="bestmovie-img"></div>
-        <ul class="bestmovie-details"></ul>
+    <div class="container">
+        <div class="box-bestmovie">
+            <button id="button-info">INFO</button>
+            <div class="bestmovie-img"></div>
+            <ul class="bestmovie-details">
+                <iframe width="700" height="250" id="vimeo"></iframe>
+            </ul>
+        </div>
     </div>
     
-    <button id="left">Left</button>
-    <button id="right">Right</button>
-    <div id="move">
-        <div id="content">
-        Some text inside a div element.<br><br>
-        Some text inside a div element.
-        </div>
-      </div>
-      <div>
-          <h1 class= "category_title"> Films les mieux notés</h1>
-      </div>
-    <div class="box">
-        <div id="container"> 
+    <h1 class= "category_title"> FILMS LES MIEUX NOTES</h1>
+    <div class="container">
+        <button class="button-carroussel" id="move-left">&#10216</button>
+        <div id="box-bestmovies"> 
             <div class="category" id="bestmovies"></div>
         </div>
+        <button class="button-carroussel" id="move-right">&#10217</button>
     </div>
 
-
-    <div>>
-            <h1 class= "category_title" id="category1_title"></h1>
-        </div>
-        <div class="category" id="category1"></div>
-        <div>>
-            <h1 class= "category_title" id="category2_title"></h1>
-        </div>
-        <div class="category" id="category2"></div>
-        <div>>
-            <h1 class= "category_title" id="category3_title"></h1>
-        </div>
-        <div class="category" id="category3"></div>
+    <h1 class= "category_title" id="category1_title"></h1>
+    <div class="category" id="category1"></div>
+        
+    <h1 class= "category_title" id="category2_title"></h1>
+    <div class="category" id="category2"></div>
+    
+    <h1 class= "category_title" id="category3_title"></h1>
+    <div class="category" id="category3"></div>
 
 
-</body>
 <script src="script.js" defer></script>
+</body>
 </html>
     

@@ -6,8 +6,10 @@
 
 body {
     background-color:white;
+    color: black;
     /* overflow-x: hidden; */
-    font-family: Arial, Helvetica, sans-serif;
+    /* font-family: Arial, Helvetica, sans-serif; */
+    font-family: Nunito sans, sans-serif;
     padding-top: 70px;
 
 }
@@ -16,16 +18,14 @@ nav {
     position: fixed;
     top: 0;
     height: 70px;
+    background-color:silver;
     width: 100%;
-    background-color: cornflowerblue;
     z-index: 10;
 }
 
 .list-nav {
-    background-color: cornflowerblue;
     height: 100%;
     width: 100%;
-    color: white;
     list-style-type: none;
     display: flex;
     justify-content: space-evenly;
@@ -38,60 +38,109 @@ nav {
 
 .item-nav a {
     text-decoration: none;
-    color: black;
     text-transform: uppercase;
+    color:seashell;
+    font-size: larger;
 }
 
 .item-nav a::after {
     content:"";
     display: block;
     margin: 0 auto;
+    background-color: seashell;
     width: 0%;
     height: 2px;
-    background-color: black;
     transition: width 0.2s ease-in-out
 }
 
 .item-nav a:hover::after{
     width: 100%;
-}
-
-
-
-#move {
-    height: 250px;
-    width: 250px;
-    overflow: auto;
-  }
-
-#content {
-    height: 800px;
-    width: 2000px;
-    background-color: coral;
-  }
-
-.bestmovie {
-    display: flex;
-    justify-content: center;
     color: black;
 }
 
-.box{
-    display: flex;
-    justify-content: center;
+img {
+    border-radius: 5px;
+    margin: 10px;
 }
 
-#container{
+.container{
     display: flex;
     justify-content: center;
-    width: 600px;
     align-items: center;
+}
+
+.box-bestmovie {
+    display: flex;
+    position: relative;
+    width: 1010px;
+}
+
+#button-info {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    left: 71px;
+    top: 230px;
+    align-items: center;
+    width: 60px;
+    height: 25px;
+    cursor: pointer;
+    background: silver;
+    color: white;
+    border:black;
+    padding: 8px;
+    border-radius: 5px;
+}
+
+.bestmovie-details {
+    margin: 10px;
+}
+
+#box-bestmovies{
+    display: flex;
+    width: 1010px;
     overflow: hidden;
+    scroll-behavior: smooth;
 } 
+
+
+
+.button-carroussel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: larger;
+    font-weight:bolder;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    background: silver;
+    color: seashell;
+    border: none;
+    padding: 8px;
+    border-radius: 50%;
+    outline: 0;
+}
+
+button:hover{
+    background-color: slategrey;
+}
+
+#move-right{
+    z-index: 1000;
+    /* position: absolute;; */
+    /* left: 800px; */
+}
+
+#move-left{
+    z-index: 1000;
+    /* position: absolute; */
+    /* left: 800px; */
+}
 
 .category {
     display: flex;
-    justify-content: center;
+    /* justify-content: center; */
     /* overflow-x: auto; */
     width: 500%;
     /* left: -20%; */
@@ -100,15 +149,19 @@ nav {
 }
 
 .movieCard {
-    width: 200px;
-    min-width: 200px;
-    height: 300px;
-
-    /* overflow: hidden; */
+    /* width: 182px;
+    height: 268px; */
+    opacity: 0.8;
 }
+
+.movieCard:hover {
+    opacity: 1;
+}
+
 h1 {
     display: flex;
     justify-content: center;
+    font-size: larger;
 }
 
 ul li {
@@ -116,14 +169,13 @@ ul li {
     margin-left: 30px;
 }
 
-
 .category_title {
     display: flex;
     justify-content: space-evenly;
     color: black;
 }
 
-#modal{
+#container-modal{
     position: fixed;
     display: none;
     width: 100%;    
@@ -131,36 +183,16 @@ ul li {
     justify-content: center;
     /* vertical-align: middle; */
     align-items: center;
+    z-index: 100;
 }
 
-#modal-test{
+#modal{
     display: flex;
     /* justify-content: center; */
     background-color: darkkhaki;
-    opacity: 0.9;
+    opacity: 1;
     top: 50%;
     left: 50%;
     position: fixed;
     transform: translate(-50%, -50%);
-}
-/* to delete */
-.test-container{
-    display: none;
-    justify-content: center;
-    align-items: center;
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    background-color: rgba(0,0,0,0.5);
-}
-
-#container {
-    overflow: hidden;
-}
-#xavier{
-    width: 5000px;
-    height: 100px;
-    background-color: chartreuse;
 }
