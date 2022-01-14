@@ -18,6 +18,7 @@ nav {
     position: fixed;
     top: 0;
     height: 70px;
+    /* margin: 10px; */
     background-color:silver;
     width: 100%;
     z-index: 10;
@@ -63,24 +64,28 @@ img {
     margin: 10px;
 }
 
+.box-bestmovie {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    background-color: white;
+    /* z-index: 2000; */
+    width: 1010px;
+}
+
 .container{
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.box-bestmovie {
-    display: flex;
-    position: relative;
-    width: 1010px;
-}
 
 #button-info {
     display: flex;
     justify-content: center;
-    position: absolute;
-    left: 71px;
-    top: 230px;
+    position: relative;
+    left: 70px;
+    top: 250px;
     align-items: center;
     width: 60px;
     height: 25px;
@@ -94,6 +99,7 @@ img {
 
 .bestmovie-details {
     margin: 10px;
+    background-color: white;
 }
 
 #box-bestmovies{
@@ -102,10 +108,27 @@ img {
     overflow: hidden;
     scroll-behavior: smooth;
 } 
+#box-category1{
+    display: flex;
+    width: 1010px;
+    overflow: hidden;
+    scroll-behavior: smooth;
+} 
+#box-category2{
+    display: flex;
+    width: 1010px;
+    overflow: hidden;
+    scroll-behavior: smooth;
+} 
+#box-category3{
+    display: flex;
+    width: 1010px;
+    overflow: hidden;
+    scroll-behavior: smooth;
+} 
 
 
-
-.button-carroussel {
+.button-carrousel {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -126,18 +149,6 @@ button:hover{
     background-color: slategrey;
 }
 
-#move-right{
-    z-index: 1000;
-    /* position: absolute;; */
-    /* left: 800px; */
-}
-
-#move-left{
-    z-index: 1000;
-    /* position: absolute; */
-    /* left: 800px; */
-}
-
 .category {
     display: flex;
     /* justify-content: center; */
@@ -156,6 +167,7 @@ button:hover{
 
 .movieCard:hover {
     opacity: 1;
+    cursor: pointer;
 }
 
 h1 {
@@ -189,8 +201,11 @@ ul li {
 #modal{
     display: flex;
     /* justify-content: center; */
-    background-color: darkkhaki;
-    opacity: 1;
+    background-color: whitesmoke;
+    border: 1px;
+    border-style:solid;
+    border-radius: 5px;
+    height: 300px;
     top: 50%;
     left: 50%;
     position: fixed;
