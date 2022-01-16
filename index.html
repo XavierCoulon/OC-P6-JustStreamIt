@@ -1,86 +1,85 @@
 
 <!DOCTYPE html>
 <html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Merienda+One&family=Nunito+Sans&display=swap" rel="stylesheet">
-    <title>JustStreamIt</title>
-</head>
-<body> 
-    <nav>
-        <ul class="list-nav">
-            <li class="item-nav">
-                <a href="#">JustStreamIt</a>
-            </li>
-            <li class="item-nav">
-                <a href="#">Accueil</a>
-            </li>
-            <li class="item-nav">
-                <a href="#">Catégories</a>
-            </li>
-        </ul>
-    </nav>
-
-    <div id="container-modal">
-        <div id="modal">
-            <div class="modal-img"></div>
-            <ul class="modal-details"></ul>
-        </div>
-    </div>
-    <div class="container">
-        <div class="box-bestmovie">
-            
-            <div class="bestmovie-img"><button id="button-info">INFO</button></div>
-            <ul class="bestmovie-details">
-                <iframe width="700" height="250" id="vimeo"></iframe>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
+        <link href="https://fonts.googleapis.com/css2?family=Merienda+One&family=Nunito+Sans&display=swap" rel="stylesheet">
+        <title>JustStreamIt</title>
+    </head>
+    <body> 
+        <nav>
+            <ul>
+                <li>
+                    <a href="#">JustStreamIt</a>
+                </li>
+                <li>
+                    <a href="#">Accueil</a>
+                </li>
+                <li>
+                    <a href="#">Catégories</a>
+                </li>
             </ul>
+        </nav>
+        
+        <div class="modal">
+            <div class="container__modal">
+                <div class="container__modal__img"></div>
+                <ul class="container__modal__details"></ul>
+            </div>
         </div>
-    </div>
+
+        <div class="container">
+            <div class="container__bestmovie">
+                <div class="container__bestmovie__media">
+                    <div class="container__bestmovie__media__img"><button id="btnInfo">INFO</button></div>
+                    <iframe width="700" height="250" id="vimeo"></iframe>
+                </div>
+            <ul class="container__bestmovie__details"></ul>
+            </div>
+        </div>
+        
+        
+        <h1> FILMS LES MIEUX NOTES</h1>
+        <div class="container">
+            <button class="container__btn" id="bestmoviesBtnLeft">&#10216;</button>
+            <div class="container__category"> 
+                <div class="container__category__carroussel" id="bestmovies"></div>
+            </div>
+            <button class="container__btn" id="bestmoviesBtnRight">&#10217;</button>
+        </div>
+
+        <h1 id="category1Title"></h1>
+        <div class="container">
+            <button class="container__btn" id="category1BtnLeft">&#10216;</button>
+            <div class="container__category"> 
+                <div class="container__category__carroussel" id="category1"></div>
+            </div>
+            <button class="container__btn" id="category1BtnRight">&#10217;</button>
+        </div>
+        
+        <h1 id="category2Title"></h1>
+        <div class="container">
+            <button class="container__btn" id="category2BtnLeft">&#10216;</button>
+            <div class="container__category"> 
+                <div class="container__category__carroussel" id="category2"></div>
+            </div>
+            <button class="container__btn" id="category2BtnRight">&#10217;</button>
+        </div>
+        
+        <h1 id="category3Title"></h1>
+        <div class="container">
+            <button class="container__btn" id="category3BtnLeft">&#10216;</button>
+            <div class="container__category"> 
+                <div class="container__category__carroussel" id="category3"></div>
+            </div>
+            <button class="container__btn" id="category3BtnRight">&#10217;</button>
+        </div>
     
-
-    <h1 class= "category_title"> FILMS LES MIEUX NOTES</h1>
-    <div class="container">
-        <button class="button-carrousel" id="button-bestmovies-left">&#10216</button>
-        <div id="box-bestmovies"> 
-            <div class="category" id="bestmovies"></div>
-        </div>
-        <button class="button-carrousel" id="button-bestmovies-right">&#10217</button>
-    </div>
-
-    <h1 class= "category_title" id="category1_title"></h1>
-    <div class="container">
-        <button class="button-carrousel" id="button-category1-left">&#10216</button>
-        <div id="box-category1"> 
-            <div class="category" id="category1"></div>
-        </div>
-        <button class="button-carrousel" id="button-category1-right">&#10217</button>
-    </div>
+       
     
-    <h1 class= "category_title" id="category2_title"></h1>
-    <div class="container">
-        <button class="button-carrousel" id="button-category2-left">&#10216</button>
-        <div id="box-category2"> 
-            <div class="category" id="category2"></div>
-        </div>
-        <button class="button-carrousel" id="button-category2-right">&#10217</button>
-    </div>
-    
-    <h1 class= "category_title" id="category3_title"></h1>
-    <div class="container">
-        <button class="button-carrousel" id="button-category3-left">&#10216</button>
-        <div id="box-category3"> 
-            <div class="category" id="category3"></div>
-        </div>
-        <button class="button-carrousel" id="button-category3-right">&#10217</button>
-    </div>
-
- 
-
-
-<script src="script.js" defer></script>
-</body>
+    <script src="script.js" defer></script>
+    </body>
 </html>
-    
