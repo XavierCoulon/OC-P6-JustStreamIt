@@ -23,9 +23,9 @@ img {
     margin: 10px;
 }
 
-h1 {
+h1, h2 {
     @include flex-center();
-    font-size: larger;
+    font-size: 1.2em;
 }
 
 button:hover{
@@ -80,7 +80,7 @@ nav {
     }
 
 
-.modal{
+#modal{
     position: absolute;
     justify-content: center;
     align-items: center;
@@ -89,23 +89,19 @@ nav {
     height: 100%;
     z-index: 1000;
 
-    .container__modal{
+    #container__modal{
         position: fixed;
         display: flex;
         justify-content: center;
         align-items: center;
         width: 70%;
-        background-color:lavender;
-        border: 1px;
-        border-style:solid;
-        border-radius: 5px;
-        /* height: 300px; */
+        background-color:linen;
+        opacity: 0.95;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
     }
 }
-
 
 .container{
     @include flex-center();
@@ -154,6 +150,7 @@ nav {
     
     &:hover{
         opacity: 1;
+        transform: translateY(-2px);
         cursor: pointer;
     }
 }
@@ -173,4 +170,52 @@ nav {
     border:black;
     padding: 8px;
     border-radius: 5px;
+}
+
+
+@media (max-width: 1070px) {
+    .container__category {
+        width: 800px;
+    }
+
+    .container__bestmovie {
+        width: 800px;
+    }
+}
+
+@media (max-width: 870px) {
+    .container__category {
+        width: 600px;
+    }
+
+    .container__bestmovie {
+        width: 600px;
+    }
+}
+
+@media (max-width: 425px) {
+    
+    nav{
+        font-size: 12px;
+    }
+    
+    .container__category {
+        width: 200px;
+    }
+
+    .container__bestmovie {
+        width: 200px;
+    }
+
+    #vimeo{
+        display: none;
+    }
+
+    .container__modal__img{
+        display: none;
+    }
+
+    h1{
+        font-size: smaller;
+    }
 }

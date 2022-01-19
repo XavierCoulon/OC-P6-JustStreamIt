@@ -3,13 +3,15 @@
 <html lang="fr">
     <head>
         <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="style.css">
         <link href="https://fonts.googleapis.com/css2?family=Merienda+One&family=Nunito+Sans&display=swap" rel="stylesheet">
         <title>JustStreamIt</title>
     </head>
     <body> 
+        
+        <!-- Nav bar -->
         <nav>
             <ul>
                 <li>
@@ -24,13 +26,15 @@
             </ul>
         </nav>
         
-        <div class="modal">
-            <div class="container__modal">
-                <div class="container__modal__img"></div>
-                <ul class="container__modal__details"></ul>
+        <!-- Modal, hidden at loading -->
+        <div id="modal">
+            <div id="container__modal">
+                <div id="container__modal__img"></div>
+                <ul id="container__modal__details"></ul>
             </div>
         </div>
 
+        <!-- Best movie block -->
         <div class="container">
             <div class="container__bestmovie">
                 <div class="container__bestmovie__media">
@@ -41,7 +45,7 @@
             </div>
         </div>
         
-        
+        <!-- Best movies block -->
         <h1> FILMS LES MIEUX NOTES</h1>
         <div class="container">
             <button class="container__btn" id="bestmoviesBtnLeft">&#10216;</button>
@@ -51,7 +55,8 @@
             <button class="container__btn" id="bestmoviesBtnRight">&#10217;</button>
         </div>
 
-        <h1 id="category1Title"></h1>
+        <!-- Category 1 block -->
+        <h2 id="category1Title"></h2>
         <div class="container">
             <button class="container__btn" id="category1BtnLeft">&#10216;</button>
             <div class="container__category"> 
@@ -60,7 +65,8 @@
             <button class="container__btn" id="category1BtnRight">&#10217;</button>
         </div>
         
-        <h1 id="category2Title"></h1>
+        <!-- Category 2 block -->
+        <h2 id="category2Title"></h2>
         <div class="container">
             <button class="container__btn" id="category2BtnLeft">&#10216;</button>
             <div class="container__category"> 
@@ -69,7 +75,8 @@
             <button class="container__btn" id="category2BtnRight">&#10217;</button>
         </div>
         
-        <h1 id="category3Title"></h1>
+        <!-- Category 3 block -->
+        <h2 id="category3Title"></h2>
         <div class="container">
             <button class="container__btn" id="category3BtnLeft">&#10216;</button>
             <div class="container__category"> 
@@ -78,8 +85,6 @@
             <button class="container__btn" id="category3BtnRight">&#10217;</button>
         </div>
     
-       
-    
-    <script src="script.js" defer></script>
+        <script src="script.js" defer></script>
     </body>
 </html>

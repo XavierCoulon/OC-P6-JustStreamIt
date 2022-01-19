@@ -16,7 +16,7 @@ img {
   margin: 10px;
 }
 
-h1 {
+h1, h2 {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -26,7 +26,7 @@ h1 {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  font-size: larger;
+  font-size: 1.2em;
 }
 
 button:hover {
@@ -94,7 +94,7 @@ nav ul li a:hover::after {
   color: black;
 }
 
-.modal {
+#modal {
   position: absolute;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
@@ -108,7 +108,7 @@ nav ul li a:hover::after {
   z-index: 1000;
 }
 
-.modal .container__modal {
+#modal #container__modal {
   position: fixed;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -120,11 +120,8 @@ nav ul li a:hover::after {
       -ms-flex-align: center;
           align-items: center;
   width: 70%;
-  background-color: lavender;
-  border: 1px;
-  border-style: solid;
-  border-radius: 5px;
-  /* height: 300px; */
+  background-color: linen;
+  opacity: 0.95;
   top: 50%;
   left: 50%;
   -webkit-transform: translate(-50%, -50%);
@@ -213,6 +210,8 @@ nav ul li a:hover::after {
 
 .movieCard:hover {
   opacity: 1;
+  -webkit-transform: translateY(-2px);
+          transform: translateY(-2px);
   cursor: pointer;
 }
 
@@ -237,5 +236,44 @@ nav ul li a:hover::after {
   border: black;
   padding: 8px;
   border-radius: 5px;
+}
+
+@media (max-width: 1070px) {
+  .container__category {
+    width: 800px;
+  }
+  .container__bestmovie {
+    width: 800px;
+  }
+}
+
+@media (max-width: 870px) {
+  .container__category {
+    width: 600px;
+  }
+  .container__bestmovie {
+    width: 600px;
+  }
+}
+
+@media (max-width: 425px) {
+  nav {
+    font-size: 12px;
+  }
+  .container__category {
+    width: 200px;
+  }
+  .container__bestmovie {
+    width: 200px;
+  }
+  #vimeo {
+    display: none;
+  }
+  .container__modal__img {
+    display: none;
+  }
+  h1 {
+    font-size: smaller;
+  }
 }
 /*# sourceMappingURL=style.css.map */

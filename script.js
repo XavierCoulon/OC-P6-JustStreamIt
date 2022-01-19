@@ -1,10 +1,14 @@
-const category1 = "Action";
+
+// Variables to change categories.
+const category1 = "Drama";
 const category2 = "Comedy";
-const category3 = "History";
+const category3 = "Thriller";
+
+// Value to scroll in carrousel
 const scrollWidth = 202;
 
 
-// Return Id from the API's best movie
+// Return Id of best movie ever (from OC API)
 async function fetchBestMoviesId() {
     try{
         let response = await fetch("http://localhost:8000/api/v1/titles/?&sort_by=-imdb_score");
@@ -18,37 +22,35 @@ async function fetchBestMoviesId() {
 // Return data from a specific movie (Id)
 async function fetchMovieDetails(id) {
     try {
-        let response = await fetch(`http://localhost:8000/api/v1/titles/${id}`, {
-            method: 'GET',
-            credentials: 'same-origin'
-        });
+        let response = await fetch(`http://localhost:8000/api/v1/titles/${id}`);
         let movie = await response.json();
         return movie;
     } catch (error) {
-        console.error(error);
+        console.error("Error when trying to fetch data from a specific movie");
     }
 }
 
-// IMDB API - Return trailer from a specific movie (Id)
+// Option: IMDB API - Return trailer from a specific movie (Id)
 async function trailerMovie(id) {
     try {
-        let response = await fetch(`https://imdb-api.com/en/API/Trailer/k_k2td4msc/tt${id}`, {
-            method: 'GET',
-            credentials: 'same-origin'
-        });
+        let response = await fetch(`https://imdb-api.com/en/API/Trailer/k_k2td4msc/tt${id}`);
         let trailer = await response.json();
         return trailer;
     } catch (error) {
-        console.error(error);
+        console.error("Error when trying to fetch trailer");
     }
 }
 
 
 // Return movies from a category (sorted by score)
 async function fetchBestMoviesByCategory(category) {
-    let response = await fetch(`http://localhost:8000/api/v1/titles/?&page_size=8&sort_by=-imdb_score&genre=${category}`);
-    let data = await response.json();
-    return await data.results;
+    try{
+        let response = await fetch(`http://localhost:8000/api/v1/titles/?&page_size=8&sort_by=-imdb_score&genre=${category}`);
+        let data = await response.json();
+        return await data.results;
+    } catch (error) {
+        console.error("Error when trying to fetch movies from a category");
+    }
 }
 
 
@@ -83,7 +85,7 @@ function displayBestMoviesCategory(category, section) {
         if (section != "bestmovies"){
             document.querySelector(`#${section}Title`).innerText = category;
         } 
-        for (index = 0; index < bestMoviesCategory.length - 1; index++) {
+        for (let index = 0; index < bestMoviesCategory.length - 1; index++) {
             let newCard = document.createElement("div");
             newCard.className = "movieCard";
             newCard.id = bestMoviesCategory[index].id;
@@ -100,11 +102,12 @@ function displayBestMoviesCategory(category, section) {
     scrollCarrousel(section);
 }
 
+// Display a modal including movie's information
 function displayModal(id) {
 
-    let modal = document.querySelector(".modal");
-    let imgModal = document.querySelector(".container__modal__img");
-    let detailsModal = document.querySelector(".container__modal__details");
+    let modal = document.querySelector("#modal");
+    let imgModal = document.querySelector("#container__modal__img");
+    let detailsModal = document.querySelector("#container__modal__details");
     let movieImg = document.createElement("img");
     let movieTitle = document.createElement("li");
     let movieGenres = document.createElement("li");
@@ -126,9 +129,9 @@ function displayModal(id) {
         movieImdbScore.innerText = `SCORE: ${movie.imdb_score}`;
         movieDirectors.innerText = `REALISATEUR(s): ${movie.directors}`;
         movieActors.innerText = `ACTEURS: ${movie.actors}`;
-        movieDuration.innerText = `DUREE: ${movie.duration}`;
+        movieDuration.innerText = `DUREE: ${movie.duration}'`;
         movieCountries.innerText = `PAYS: ${movie.countries}`;
-        if (movie.worldwide_gross_income=== null) {
+        if (!movie.worldwide_gross_income) {
             movieBoxOffice.innerText = "CA: 0$";    
         } else {
             movieBoxOffice.innerText = `CA: ${movie.worldwide_gross_income}$`;
@@ -159,22 +162,21 @@ function displayModal(id) {
 
 // Scroll element in a category's box
 function scrollCarrousel(category) {
+    let x, newx;
+    
     document.getElementById(`${category}BtnLeft`).onclick = function() {
         document.getElementById(`${category}`).parentNode.scrollLeft -=scrollWidth;
-        // document.getElementById(`box-${category}`).scrollLeft -= scrollWidth;
     };
-    
+
     document.getElementById(`${category}BtnRight`).onclick = function() {
         document.getElementById(`${category}`).parentNode.scrollLeft +=scrollWidth;
-        // document.getElementById(`box-${category}`).scrollLeft += scrollWidth;
     };
 }
 
 
 // Main
 
-fetchBestMoviesId().then (id => displayBestMovie(id));
-
+fetchBestMoviesId().then(displayBestMovie);
 displayBestMoviesCategory("", "bestmovies");
 displayBestMoviesCategory(category1, "category1");
 displayBestMoviesCategory(category2, "category2");
