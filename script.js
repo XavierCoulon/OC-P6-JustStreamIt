@@ -1,6 +1,6 @@
 
 // Variables to change categories.
-const category1 = "Drama";
+const category1 = "History";
 const category2 = "Comedy";
 const category3 = "Thriller";
 

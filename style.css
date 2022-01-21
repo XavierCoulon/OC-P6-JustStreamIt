@@ -269,10 +269,10 @@ nav ul li a:hover::after {
   #vimeo {
     display: none;
   }
-  .container__modal__img {
+  #container__modal__img {
     display: none;
   }
-  h1 {
+  h2, h1 {
     font-size: smaller;
   }
 }
